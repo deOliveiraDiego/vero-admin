@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 1rem;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 1rem auto;
+}
+
+/* Estilo dos blocos de protocolo */
+.block {
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: left;
+    page-break-inside: avoid; /* Evita quebra de página dentro do bloco */
+    font-size: 11px;
+}
+
+.block h2 {
+    text-align: center;
+    margin: 1rem auto;
+    font-size: 12px;
+}
+
+.block img {
+    display: block;
+    margin: 1rem auto;
+    width: 5rem;
+}
+
+/* Tabela de dados */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+td:first-child {
+    font-weight: bold;
+}
+
+/* Garantir 3 blocos por página na impressão */
+@media print {
+    body {
+        margin: 1rem;
+        padding: 0;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .block {
+        width: calc(100% / 1); /* Força cada bloco a ocupar largura total */
+        margin: 1rem;
+        page-break-after: auto; /* Permite quebra após o bloco */
+    }
+
+    /* Ajusta para 3 blocos por página */
+    @page {
+        size: A4;
+        margin: 1rem; /* Margens ajustadas para impressão */
+    }
+}
