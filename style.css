@@ -1,3 +1,35 @@
+#gerarProtocolos {
+    background-color: #0d6efd;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    margin: 1rem;
+}
+
+#gerarProtocolos:hover {
+    background-color: #0b5ed7;
+}
+
+#gerarProtocolos:active {
+    background-color: #0a58ca;
+}
+
+#gerarProtocolos:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 1rem;
@@ -15,7 +47,8 @@ body {
     margin-bottom: 10px;
     padding: 10px;
     text-align: left;
-    page-break-inside: avoid; /* Evita quebra de página dentro do bloco */
+    page-break-inside: avoid;
+    /* Evita quebra de página dentro do bloco */
     font-size: 11px;
 }
 
@@ -46,6 +79,41 @@ td:first-child {
     font-weight: bold;
 }
 
+/* Spinner container */
+.spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-left: 8px solid #000;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: transparent;
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
 /* Garantir 3 blocos por página na impressão */
 @media print {
     body {
@@ -60,14 +128,17 @@ td:first-child {
     }
 
     .block {
-        width: calc(100% / 1); /* Força cada bloco a ocupar largura total */
+        width: calc(100% / 1);
+        /* Força cada bloco a ocupar largura total */
         margin: 1rem;
-        page-break-after: auto; /* Permite quebra após o bloco */
+        page-break-after: auto;
+        /* Permite quebra após o bloco */
     }
 
     /* Ajusta para 3 blocos por página */
     @page {
         size: A4;
-        margin: 1rem; /* Margens ajustadas para impressão */
+        margin: 1rem;
+        /* Margens ajustadas para impressão */
     }
 }

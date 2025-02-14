@@ -1,21 +1,29 @@
-
 const url = "https://n8n.deoliveiratech.com/webhook/vero/protocolos";
-
+const generateButton = document.getElementById("gerarProtocolos");
+const spinner = document.getElementById("spinner");
+const h1 = document.getElementById("h1");
+const header = document.getElementById("header");
 async function fetchData() {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Erro na requisição: ${response.status}`);
+      throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
     }
+    
     const data = await response.json();
-    console.log("Dados recebidos:", data);
+    
+    if (!Array.isArray(data) || data.length === 0) {
+      throw new Error('Dados inválidos ou vazios recebidos do servidor');
+    }
 
     createBlocks(data);
   } catch (error) {
     console.error("Erro ao buscar os dados:", error);
+  } finally {
+    spinner.classList.remove("show");
+    spinner.classList.add("hidden");
   }
 }
-
 function createBlocks(data) {
   const container = document.querySelector(".container");
 
@@ -30,7 +38,7 @@ function createBlocks(data) {
     const logo = document.createElement("img");
 
     logo.alt = "Logo Vero";
-    logo.src = 'logo_vero.png'
+    logo.src = "logo_vero.png";
     block.appendChild(logo);
 
     const table = document.createElement("table");
@@ -63,5 +71,8 @@ function createBlocks(data) {
     container.appendChild(block);
   });
 }
-
-fetchData();
+generateButton.addEventListener("click", () => {
+  spinner.classList.add("show");
+  header.classList.add("hidden");
+  fetchData();
+});
