@@ -44,12 +44,12 @@ body {
 
 /* Estilo dos blocos de protocolo */
 .block {
-    margin-bottom: 10px;
+    margin-bottom: 0;
     padding: 10px;
     text-align: left;
     page-break-inside: avoid;
     /* Evita quebra de página dentro do bloco */
-    font-size: 11px;
+    font-size: 14px;
 }
 
 .block h2 {
@@ -117,7 +117,7 @@ td:first-child {
 /* Garantir 3 blocos por página na impressão */
 @media print {
     body {
-        margin: 1rem;
+        margin: 0;
         padding: 0;
     }
 
@@ -130,7 +130,7 @@ td:first-child {
     .block {
         width: calc(100% / 1);
         /* Força cada bloco a ocupar largura total */
-        margin: 1rem;
+        margin: 0rem;
         page-break-after: auto;
         /* Permite quebra após o bloco */
     }
@@ -138,7 +138,7 @@ td:first-child {
     /* Ajusta para 3 blocos por página */
     @page {
         size: A4;
-        margin: 1rem;
+        margin: 0;
         /* Margens ajustadas para impressão */
     }
 }

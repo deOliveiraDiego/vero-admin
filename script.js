@@ -56,11 +56,15 @@ function createBlocks(data) {
       const tr = document.createElement("tr");
       const tdLabel = document.createElement("td");
       const tdValue = document.createElement("td");
-
+    
       tdLabel.textContent = row.label;
       tdLabel.style.fontWeight = "bold";
       tdValue.textContent = row.value;
-
+    
+      if (row.label === "Condomínio:") {
+        tdValue.style.fontWeight = "bold";
+      }
+    
       tr.appendChild(tdLabel);
       tr.appendChild(tdValue);
       table.appendChild(tr);
