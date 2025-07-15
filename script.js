@@ -1,17 +1,21 @@
-const url = "https://n8n.deoliveiratech.com/webhook/vero/protocolos";
-const generateButton = document.getElementById("gerarProtocolos");
+const urlBase = "https://n8n.deoliveiratech.com/webhook/vero/protocolos";
 const spinner = document.getElementById("spinner");
 const h1 = document.getElementById("h1");
 const header = document.getElementById("header");
-async function fetchData() {
+async function fetchData(tipo = "") {
+
+  spinner.classList.add("show");
+  // header.classList.add("hidden");
+
+  const url = tipo ? `${urlBase}?$tipo=${encodeURIComponent(tipo)}` : urlBase;
   try {
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
     }
-    
+
     const data = await response.json();
-    
+
     if (!Array.isArray(data) || data.length === 0) {
       throw new Error('Dados inválidos ou vazios recebidos do servidor');
     }
@@ -24,6 +28,7 @@ async function fetchData() {
     spinner.classList.add("hidden");
   }
 }
+
 function createBlocks(data) {
   const container = document.querySelector(".container");
 
@@ -56,15 +61,15 @@ function createBlocks(data) {
       const tr = document.createElement("tr");
       const tdLabel = document.createElement("td");
       const tdValue = document.createElement("td");
-    
+
       tdLabel.textContent = row.label;
       tdLabel.style.fontWeight = "bold";
       tdValue.textContent = row.value;
-    
+
       if (row.label === "Condomínio:") {
         tdValue.style.fontWeight = "bold";
       }
-    
+
       tr.appendChild(tdLabel);
       tr.appendChild(tdValue);
       table.appendChild(tr);
@@ -75,8 +80,3 @@ function createBlocks(data) {
     container.appendChild(block);
   });
 }
-generateButton.addEventListener("click", () => {
-  spinner.classList.add("show");
-  header.classList.add("hidden");
-  fetchData();
-});

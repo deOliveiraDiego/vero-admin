@@ -114,6 +114,26 @@ td:first-child {
     display: block;
 }
 
+.nav-links {
+    margin-top: 12px;
+}
+
+.nav-links a {
+    display: inline-block;
+    margin: 0 8px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #f5f5f5;
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.nav-links a:hover {
+  background: #e0e0e0;
+}
+
 /* Garantir 3 blocos por página na impressão */
 @media print {
     body {
@@ -123,8 +143,9 @@ td:first-child {
 
     .container {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
     }
 
     .block {
@@ -135,6 +156,11 @@ td:first-child {
         /* Permite quebra após o bloco */
     }
 
+    #gerarProtocolos,
+    .nav-links,
+    .spinner {
+        display: none;
+    }
     /* Ajusta para 3 blocos por página */
     @page {
         size: A4;
