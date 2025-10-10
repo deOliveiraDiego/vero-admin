@@ -32,13 +32,13 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin: 1rem;
-    padding: 0;
+    margin: 0;
+    padding: 20px 0;
+    background-color: #f8f9fa;
 }
 
 .container {
     width: 100%;
-    max-width: 600px;
     margin: 1rem auto;
 }
 
@@ -167,4 +167,49 @@ td:first-child {
         margin: 0;
         /* Margens ajustadas para impressão */
     }
+}
+
+/* Estilos específicos para a home page */
+.hover-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Overlay com blur - compatível com página de resumo */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9998;
+    display: none;
+}
+
+.spinner-overlay.show {
+    display: block;
+}
+
+/* Spinner atualizado para match com página de resumo */
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #0d6efd;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: none;
+    box-shadow: 0 0 20px rgba(13, 110, 253, 0.5);
+    background: transparent;
 }
