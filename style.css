@@ -85,32 +85,6 @@ td:first-child {
     font-weight: bold;
 }
 
-/* Spinner container */
-.spinner {
-    border: 8px solid rgba(0, 0, 0, 0.1);
-    border-left: 8px solid #000;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    background: transparent;
-    display: none;
-}
-
-@keyframes spin {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
 
 .hidden {
     display: none;
@@ -202,20 +176,34 @@ td:first-child {
     display: block;
 }
 
-/* Spinner atualizado para match com página de resumo */
+/* Spinner atualizado com logo Vero */
 .spinner {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #0d6efd;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
     display: none;
-    box-shadow: 0 0 20px rgba(13, 110, 253, 0.5);
     background: transparent;
+}
+
+.spinner.show {
+    display: block;
+}
+
+.spinner-logo {
+    width: 120px;
+    height: auto;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
 }

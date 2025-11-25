@@ -1,11 +1,16 @@
 const urlBase = "https://n8n.deoliveiratech.com/webhook/vero/protocolos";
 const spinner = document.getElementById("spinner");
+const spinnerOverlay = document.getElementById("spinner-overlay");
 const h1 = document.getElementById("h1");
 const header = document.getElementById("header");
-async function fetchData(tipo = "") {
 
+async function fetchData(tipo = "") {
+  // Mostra o spinner e o overlay
   spinner.classList.add("show");
-  // header.classList.add("hidden");
+  spinner.classList.remove("hidden");
+  if (spinnerOverlay) {
+    spinnerOverlay.classList.add("show");
+  }
 
   const url = tipo ? `${urlBase}?$tipo=${encodeURIComponent(tipo)}` : urlBase;
   try {
@@ -27,9 +32,17 @@ async function fetchData(tipo = "") {
     createBlocks(data);
   } catch (error) {
     console.error("Erro ao buscar os dados:", error);
+    // Exibe mensagem de erro visual
+    const container = document.querySelector(".container");
+    const errorDiv = document.createElement("div");
+    errorDiv.className = "error-message";
+    errorDiv.innerHTML = `<div class="alert alert-danger" style="max-width: 600px; margin: 2rem auto; padding: 1rem; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px; color: #721c24; text-align: center;">Erro ao carregar dados. Tente novamente mais tarde.</div>`;
+    container.appendChild(errorDiv);
   } finally {
+    // Esconde o spinner e o overlay
     spinner.classList.remove("show");
     spinner.classList.add("hidden");
+    spinnerOverlay.classList.remove("show");
   }
 }
 
