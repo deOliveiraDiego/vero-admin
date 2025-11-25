@@ -42,6 +42,12 @@ body {
     margin: 1rem auto;
 }
 
+/* Container específico para páginas de protocolo */
+.protocol-container {
+    max-width: 600px;
+    margin: 1rem auto;
+}
+
 /* Estilo dos blocos de protocolo */
 .block {
     margin-bottom: 0;

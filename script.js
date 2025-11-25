@@ -14,7 +14,11 @@ async function fetchData(tipo = "") {
       throw new Error(`Erro na requisição: ${response.status} - ${response.statusText}`);
     }
 
-    const data = await response.json();
+    const response_data = await response.json();
+    console.log('Dados recebidos da API:', response_data);
+
+    // Aceita tanto array direto quanto { data: [...] }
+    const data = Array.isArray(response_data) ? response_data : response_data.data;
 
     if (!Array.isArray(data) || data.length === 0) {
       throw new Error('Dados inválidos ou vazios recebidos do servidor');
